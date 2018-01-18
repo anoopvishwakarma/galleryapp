@@ -1,0 +1,126 @@
+<html>
+    <head>
+        <title>Playing with arrays</title>
+        <style>
+            body{
+                margin:0;
+                padding: 0;
+                background: #efefef;
+            }
+            ul{
+                list-style: none;
+                display: flex;
+                flex-wrap: wrap;
+            }
+            .card{
+                background: #fff;
+                margin: 10px;
+                padding: 10px;
+                transition: 0.3s all;
+                box-shadow: 0px 4px 8px 0px rgba(0,0,0,0.2);
+            }
+            .card:hover{
+                transform: scale(1.1);
+            }
+            .card h3{
+                text-align: center;
+                text-transform: uppercase;
+                font-weight: 900;
+                letter-spacing: 2px;
+                line-height: 1.2;
+            }
+            .card img{
+                width: 300px;
+            }
+            .card p{
+               text-align: center;
+            }
+            .search-form{
+                text-align: center;
+            }       
+            .search-form input#searchText{
+                padding: 10px;
+            }     
+            .search-form button{
+                padding: 10px;
+            }               
+            navbar h4{
+                background: #349fff;
+                color: #fff;
+                font-size: 28px;
+                padding: 20px;
+            }
+        </style>
+    </head>
+    <body>
+        <navbar>
+            <h4>Bullshit application</h4>
+        </navbar>
+        <div class="search-form">
+            <h2>Playing with Array</h2>
+            <input type="text" id="searchText" placeholder="Enter the string to search" onkeypress="onKeyPressSearchText(this,event)"/>
+            <button onclick="onClickSearch()">Search</button>
+        </div>
+        <ul id="records"></ul>
+        <script>
+            function onKeyPressSearchText(){
+                onClickSearch();
+            }
+            function onClickSearch(){
+                var searchText = document.getElementById('searchText').value;
+                var icons = [{
+                    name    : 'Steve Jobs',
+                    avatar     : 'assets/Chrysanthemum.jpg',
+                    company : 'Apple'
+                },{
+                    name    : 'Bill Gates',
+                    avatar     : 'assets/Desert.jpg',
+                    company : 'Microsoft'    
+                },{
+                    name    : 'Guru Apple',
+                    avatar     : 'assets/Hydrangeas.jpg',
+                    company : 'Apple'            
+                },{
+                    name    : 'Steve Jobs',
+                    avatar     : 'assets/Chrysanthemum.jpg',
+                    company : 'Apple'
+                },{
+                    name    : 'Bill Gates',
+                    avatar     : 'assets/Desert.jpg',
+                    company : 'Microsoft'    
+                },{
+                    name    : 'Guru Apple',
+                    avatar     : 'assets/Hydrangeas.jpg',
+                    company : 'Apple'            
+                },{
+                    name    : 'Steve Jobs',
+                    avatar     : 'assets/Chrysanthemum.jpg',
+                    company : 'Apple'
+                },{
+                    name    : 'Bill Gates',
+                    avatar     : 'assets/Desert.jpg',
+                    company : 'Microsoft'    
+                },{
+                    name    : 'Guru Apple',
+                    avatar     : 'assets/Hydrangeas.jpg',
+                    company : 'Apple'            
+                }];
+                var filteredRecords = icons.filter(function(icon){
+                    return icon.company.toLowerCase().indexOf(searchText.toLowerCase()) >= 0;
+                });
+                var doms = filteredRecords.map(function(record){
+                    var domRecord = "";
+                    
+                    domRecord+="<li class='card'>";
+                        domRecord+="<h3>"+record.name+"</h3>";
+                        domRecord+="<img src='"+record.avatar+"'/>";
+                        domRecord+="<p>"+record.company+"</p>";
+                    domRecord+="</li>";
+
+                    return domRecord;
+                });
+                document.getElementById('records').innerHTML = doms.toString().replace(/,/g,"");
+            }
+        </script>
+    </body>
+</html>
